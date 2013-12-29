@@ -1,0 +1,408 @@
+@import "compass";
+
+
+@mixin placeholder {
+    @each $prefix in "::-webkit-input", ":moz", "::-moz", ":-ms-input" {
+        #{$prefix}-placeholder {
+            @content;
+        }
+    }
+}
+$default-transition-duration: .15s;
+
+
+html, 
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	color: #EEE;
+}
+
+body {
+	background: #2f2f2f url('../img/background.png');
+}
+
+header.header {
+	position: fixed;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	overflow: hidden;
+	background: #192730;
+	border-bottom: 1px solid #1b4159;
+	color: #EEE;
+
+	h1 {
+		margin: 0 0 0 3%;
+		float: left;
+		font-weight: normal;
+		font-size: 22px;
+		font-variant: small-caps;
+	}
+
+	.logbox {
+		width: 200px;
+		float: right;
+		background: rgba(255, 255, 255, .1);
+		
+		.avatar {
+			height: 40px;
+			width: 40px;
+			margin: 5px;
+			background: #111;
+			float: left;
+		}
+		.username {
+			margin-left: 5px;
+		}
+	}
+}
+
+
+.tchat-login {
+	display: block;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 10;
+	background: rgba(0, 0, 0, .5);
+
+	.tchat-login-form {
+		display: block;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		height: 240px;
+		width: 300px;
+		margin: -120px 0 0 -150px;
+		background: rgba(255, 255, 255, .2);
+		@include box-shadow(rgba(0, 0, 0, .5) 0 0 7px);
+
+		.tchat-login-title {
+			width: 100%;
+			text-align: center;
+			margin: 20px 0;
+			font-weight: normal;
+			text-transform: uppercase;
+		}
+		.tchat-login-title-middle {
+			margin-top: 100px;
+		}
+
+		input {
+			display: block;
+			height: 30px;
+			width: 70%;
+			margin: 0 10% 10px;
+			padding: 0 5%;
+			border: 1px solid #555;
+			background: rgba(255, 255, 255, .1);
+			color: #DDD;
+			@include transition;
+
+			&:hover {
+				background: rgba(255, 255, 255, .05);
+			}
+
+			&:focus {
+				outline: none;
+				border-color: #1073b2;
+				background: rgba(255, 255, 255, .2);
+				@include box-shadow(#1073b2 0 0 3px);
+			}
+
+			&[type=submit] {
+				position: absolute;
+				bottom: 10px;
+				right: 0;
+				width: 50%;
+			}
+		}
+
+		.tchat-login-errors {
+			color: #FFF;
+			display: block;
+			margin: 0 10%;
+			padding: 5px 0;
+			width: 80%;
+			font-size: 14px;
+		}
+	}
+}
+
+.tchat-container {
+	position: fixed;
+	overflow: auto;
+	overflow-y: scroll;
+	top: 51px;
+	left: 0;
+	right: 200px;
+	bottom: 35px;
+	margin: 0;
+	padding: 0;
+
+	a {
+		color: #FFF;
+		text-decoration: none;
+
+		&:hover,
+		&:focus {
+			text-decoration: underline;
+		}
+	}
+
+	.tchat-messages {
+		.tchat-message {
+			min-height: 50px;
+			padding: 10px 0 5px;
+			clear: both;
+
+			&:nth-child(2n) {
+				background: rgba(0, 0, 0, .1);
+			}
+
+			.avatar {
+				float: left;
+				display: block;
+				height: 50px;
+				width: 50px;
+				margin: 0 10px;
+			}
+
+			.tchat-message-content {
+				display: block;
+				line-height: 25px;
+				margin-left: 70px;
+
+				.username {
+					color: #CCC;
+				}
+
+				.tchat-message-time {
+					color: #555;
+					margin: 0 10px 0 0;
+				}
+
+				.tchat-message-line {
+					margin: 7px 0 0;
+				}
+			}
+
+			&.tchat-server-message {
+				min-height: 30px;
+				line-height: 30px;
+
+				.tchat-message-line {
+					margin: 3px 0;
+				}
+			}
+		}
+
+		.tchat-usr-status {
+			display: block;
+			position: relative;
+			float: left;
+			width: 50px;
+			height: 50px;
+
+			img {
+				display: block;
+				margin: 10px 0 10px 10px;
+			}
+
+			&.tchat-usr-focus {
+				@include opacity(1);
+			}
+			&.tchat-usr-notfocus {
+				@include opacity(.4);
+			}
+
+			&.tchat-usr-iswriting {
+				width: 70px;
+
+				&:after {
+					content: "...";
+					position: absolute;
+					top: 20px;
+					right: 10px;
+				}
+			}
+		}
+	}
+
+	.form-tchat {
+		display: block;
+		position: fixed;
+		width: 100%;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 34px;
+
+		input {
+			height: 33px;
+			width: 98%;
+			border: none;
+			margin: 0;
+			padding: 0 1%;
+			border-top: 1px solid #555;
+			background: rgba(255, 255, 255, .1);
+			color: #DDD;
+			@include transition;
+
+			&:focus {
+				outline: none;
+				border-top-color: #1073b2;
+				background: rgba(255, 255, 255, .2);
+				@include box-shadow(#1073b2 0 0 3px);
+			}
+		}
+	}
+
+	.tchat-participants {
+		position: fixed;
+		overflow: auto;
+		overflow-y: scroll;
+		top: 50px;
+		right: 0;
+		bottom: 34px;
+		width: 200px;
+		background: #282828;
+		border-left: 1px solid #1c455f;
+
+		h3 {
+			font-weight: normal;
+			font-variant: small-caps;
+			margin-left: 10px;
+			font-size: 22px;
+			margin: 20px 10px;
+		}
+
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+
+			li {
+				padding: 0;
+				margin: 0;
+				height: 40px;
+				line-height: 40px;
+
+				a {
+					display: block;
+					overflow: hidden;
+					height: 100%;
+					text-decoration: none;
+					color: #CCC;
+					@include transition;
+
+					.username {
+						display: block;
+						width: 70%;
+						@include ellipsis;
+						@include transition(all .15s ease 0);
+					}
+
+					.avatar {
+						height: 30px;
+						width: 30px;
+						margin: 5px 10px;
+						background: #111;
+						float: left;
+						@include transition(margin-left .15s ease 0);
+					}
+
+					&:hover,
+					&:focus {
+						color: #FFF;
+						background: rgba(255, 255, 255, .1);
+
+						.avatar {
+							margin-left: -30px;
+							@include transition(margin-left .15s ease .5s);
+						}
+						.username {
+							width: 90%;
+							@include transition(width .15s ease .5s);
+						}
+
+						&[class] {
+							border-right-width: 7px;
+
+							.avatar {
+								@include opacity(1);
+							}
+							.username {
+								color: #FFF;
+							}
+						}
+					}
+
+					&.operator {
+						border-right: 3px solid #1073b2;
+					}
+					&.inactive {
+						border-right: 3px solid #999;
+						.avatar {
+							@include opacity(.7);
+						}
+						.username {
+							color: #888;
+						}
+					}
+					&.online {
+						border-right: 3px solid green;
+					}
+					&.offline {
+						.avatar {
+							@include opacity(.3);
+						}
+						.username {
+							color: #666;
+						}
+					}
+				}
+
+				&:nth-child(2n+1) a {
+					background: rgba(255, 255, 255, .03);
+
+					&:hover,
+					&:focus {
+						background: rgba(255, 255, 255, .1);
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+/**
+ * Custom scrollbar
+ */
+::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {
+    display: block;
+    height: 0;
+    background-color: transparent;
+}
+::-webkit-scrollbar-track-piece {
+    background-color: #222;
+}
+::-webkit-scrollbar-thumb:vertical {
+    height: 50px;
+    background-color: #444;
+}
+::-webkit-scrollbar-thumb:vertical:hover {
+    background-color: #777;
+}

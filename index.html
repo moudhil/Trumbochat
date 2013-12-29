@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Trumbochat</title>
+
+		<link rel="stylesheet" href="css/normalize.min.css">
+		<link rel="stylesheet" href="css/trumbochat.css">
+	</head>
+	<body>
+		<header class="header">
+			<h1>Trumbochat</h1>
+			<div class="logbox">
+				<img src="" alt="Username" class="avatar" id="logbox-avatar">
+				<span class="username" id="logbox-username">
+					Username
+				</span>
+			</div>
+		</header>
+
+		<div id="form-login" class="tchat-login">
+			<div class="tchat-login-form" id="tchat-connecting">
+				<h3 class="tchat-login-title tchat-login-title-middle">Connecting...</h3>
+			</div>
+			<form class="tchat-login-form" id="tchat-login-form" style="display: none;">
+				<h3 class="tchat-login-title">Connection</h3>
+
+				<input type="text" placeholder="Username" id="login-username" required>
+				<input type="text" placeholder="Email" id="login-email" required>
+
+				<span id="tchat-login-errors" class="tchat-login-errors"></span>
+
+				<input type="submit" value="Connection">
+			</form>
+		</div>
+
+		<section class="tchat-container">
+			<div id="tchat">
+				<div id="tchat-tpl" style="display: none;">
+					<div id="msg-tpl">
+						<div class="tchat-message">
+							<img src="{{user.avatar}}?s=50" class="avatar">
+							<div class="tchat-message-content">
+								<span class="username">{{user.username}}</span>
+								<p class="tchat-message-line">
+									<time class="tchat-message-time">{{ time }}</time>
+									{{{message}}}
+								</p>
+							</div>
+						</div>
+					</div>
+					<div id="msg-line-tpl">
+						<p class="tchat-message-line">
+							<time class="tchat-message-time">{{ time }}</time>
+							{{{message}}}
+						</p>
+					</div>
+					<div id="srv-msg-tpl">
+						<div class="tchat-message tchat-server-message">
+							<div class="tchat-message-content">
+								<p class="tchat-message-line">
+									<time class="tchat-message-time">{{ time }}</time>
+									{{{message}}}
+								</p>
+							</div>
+						</div>
+					</div>
+					<div id="usr-tpl">
+						<li id="usr-{{id}}">
+							<a href="" class="{{state}}">
+								<img src="{{avatar}}?s=30" alt="{{username}}" class="avatar">
+								<span class="username">
+									{{username}}
+								</span>
+							</a>
+						</li>
+					</div>
+					<div id="usr-status-tpl">
+						<div id="tchat-usr-status-{{user.id}}" class="tchat-usr-status {{writing}}">
+							<img src="{{user.avatar}}?s=30" alt="{{user.username}}" class="avatar">
+						</div>
+					</div>
+				</div>
+
+				<div id="tchat-msgs" class="tchat-messages">
+				</div>
+			</div>
+
+			<aside class="tchat-participants">
+				<h3>Participants</h3>
+				<ul id="participants">
+
+				</ul>
+			</aside>
+
+			<form id="form-tchat" class="form-tchat">
+				<input type="text" placeholder="Message" id="tchat-message" autocomplete="off">
+			</form>
+		</section>
+
+
+		<script src="js/jquery.min.js"></script>
+		<script src="js/mustache.js"></script>
+		<script src="http://localhost:1337/socket.io/lib/socket.io.js"></script>
+		<script src="js/client.js"></script>
+	</body>
+</html>

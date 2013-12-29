@@ -1,0 +1,386 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  color: #EEE;
+}
+
+body {
+  background: #2f2f2f url("../img/background.png");
+}
+
+header.header {
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  overflow: hidden;
+  background: #192730;
+  border-bottom: 1px solid #1b4159;
+  color: #EEE;
+}
+header.header h1 {
+  margin: 0 0 0 3%;
+  float: left;
+  font-weight: normal;
+  font-size: 22px;
+  font-variant: small-caps;
+}
+header.header .logbox {
+  width: 200px;
+  float: right;
+  background: rgba(255, 255, 255, 0.1);
+}
+header.header .logbox .avatar {
+  height: 40px;
+  width: 40px;
+  margin: 5px;
+  background: #111;
+  float: left;
+}
+header.header .logbox .username {
+  margin-left: 5px;
+}
+
+.tchat-login {
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+}
+.tchat-login .tchat-login-form {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 240px;
+  width: 300px;
+  margin: -120px 0 0 -150px;
+  background: rgba(255, 255, 255, 0.2);
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 0 7px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 0 7px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 0 7px;
+}
+.tchat-login .tchat-login-form .tchat-login-title {
+  width: 100%;
+  text-align: center;
+  margin: 20px 0;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+.tchat-login .tchat-login-form .tchat-login-title-middle {
+  margin-top: 100px;
+}
+.tchat-login .tchat-login-form input {
+  display: block;
+  height: 30px;
+  width: 70%;
+  margin: 0 10% 10px;
+  padding: 0 5%;
+  border: 1px solid #555;
+  background: rgba(255, 255, 255, 0.1);
+  color: #DDD;
+  -webkit-transition: all 0.15s;
+  -moz-transition: all 0.15s;
+  -o-transition: all 0.15s;
+  transition: all 0.15s;
+}
+.tchat-login .tchat-login-form input:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+.tchat-login .tchat-login-form input:focus {
+  outline: none;
+  border-color: #1073b2;
+  background: rgba(255, 255, 255, 0.2);
+  -webkit-box-shadow: #1073b2 0 0 3px;
+  -moz-box-shadow: #1073b2 0 0 3px;
+  box-shadow: #1073b2 0 0 3px;
+}
+.tchat-login .tchat-login-form input[type=submit] {
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+  width: 50%;
+}
+.tchat-login .tchat-login-form .tchat-login-errors {
+  color: #FFF;
+  display: block;
+  margin: 0 10%;
+  padding: 5px 0;
+  width: 80%;
+  font-size: 14px;
+}
+
+.tchat-container {
+  position: fixed;
+  overflow: auto;
+  overflow-y: scroll;
+  top: 51px;
+  left: 0;
+  right: 200px;
+  bottom: 35px;
+  margin: 0;
+  padding: 0;
+}
+.tchat-container a {
+  color: #FFF;
+  text-decoration: none;
+}
+.tchat-container a:hover, .tchat-container a:focus {
+  text-decoration: underline;
+}
+.tchat-container .tchat-messages .tchat-message {
+  min-height: 50px;
+  padding: 10px 0 5px;
+  clear: both;
+}
+.tchat-container .tchat-messages .tchat-message:nth-child(2n) {
+  background: rgba(0, 0, 0, 0.1);
+}
+.tchat-container .tchat-messages .tchat-message .avatar {
+  float: left;
+  display: block;
+  height: 50px;
+  width: 50px;
+  margin: 0 10px;
+}
+.tchat-container .tchat-messages .tchat-message .tchat-message-content {
+  display: block;
+  line-height: 25px;
+  margin-left: 70px;
+}
+.tchat-container .tchat-messages .tchat-message .tchat-message-content .username {
+  color: #CCC;
+}
+.tchat-container .tchat-messages .tchat-message .tchat-message-content .tchat-message-time {
+  color: #555;
+  margin: 0 10px 0 0;
+}
+.tchat-container .tchat-messages .tchat-message .tchat-message-content .tchat-message-line {
+  margin: 7px 0 0;
+}
+.tchat-container .tchat-messages .tchat-message.tchat-server-message {
+  min-height: 30px;
+  line-height: 30px;
+}
+.tchat-container .tchat-messages .tchat-message.tchat-server-message .tchat-message-line {
+  margin: 3px 0;
+}
+.tchat-container .tchat-messages .tchat-usr-status {
+  display: block;
+  position: relative;
+  float: left;
+  width: 50px;
+  height: 50px;
+}
+.tchat-container .tchat-messages .tchat-usr-status img {
+  display: block;
+  margin: 10px 0 10px 10px;
+}
+.tchat-container .tchat-messages .tchat-usr-status.tchat-usr-focus {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+.tchat-container .tchat-messages .tchat-usr-status.tchat-usr-notfocus {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+  opacity: 0.4;
+}
+.tchat-container .tchat-messages .tchat-usr-status.tchat-usr-iswriting {
+  width: 70px;
+}
+.tchat-container .tchat-messages .tchat-usr-status.tchat-usr-iswriting:after {
+  content: "...";
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}
+.tchat-container .form-tchat {
+  display: block;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 34px;
+}
+.tchat-container .form-tchat input {
+  height: 33px;
+  width: 98%;
+  border: none;
+  margin: 0;
+  padding: 0 1%;
+  border-top: 1px solid #555;
+  background: rgba(255, 255, 255, 0.1);
+  color: #DDD;
+  -webkit-transition: all 0.15s;
+  -moz-transition: all 0.15s;
+  -o-transition: all 0.15s;
+  transition: all 0.15s;
+}
+.tchat-container .form-tchat input:focus {
+  outline: none;
+  border-top-color: #1073b2;
+  background: rgba(255, 255, 255, 0.2);
+  -webkit-box-shadow: #1073b2 0 0 3px;
+  -moz-box-shadow: #1073b2 0 0 3px;
+  box-shadow: #1073b2 0 0 3px;
+}
+.tchat-container .tchat-participants {
+  position: fixed;
+  overflow: auto;
+  overflow-y: scroll;
+  top: 50px;
+  right: 0;
+  bottom: 34px;
+  width: 200px;
+  background: #282828;
+  border-left: 1px solid #1c455f;
+}
+.tchat-container .tchat-participants h3 {
+  font-weight: normal;
+  font-variant: small-caps;
+  margin-left: 10px;
+  font-size: 22px;
+  margin: 20px 10px;
+}
+.tchat-container .tchat-participants ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.tchat-container .tchat-participants ul li {
+  padding: 0;
+  margin: 0;
+  height: 40px;
+  line-height: 40px;
+}
+.tchat-container .tchat-participants ul li a {
+  display: block;
+  overflow: hidden;
+  height: 100%;
+  text-decoration: none;
+  color: #CCC;
+  -webkit-transition: all 0.15s;
+  -moz-transition: all 0.15s;
+  -o-transition: all 0.15s;
+  transition: all 0.15s;
+}
+.tchat-container .tchat-participants ul li a .username {
+  display: block;
+  width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  -webkit-transition: all 0.15s ease;
+  -webkit-transition-delay: 0;
+  -moz-transition: all 0.15s ease 0;
+  -o-transition: all 0.15s ease 0;
+  transition: all 0.15s ease 0;
+}
+.tchat-container .tchat-participants ul li a .avatar {
+  height: 30px;
+  width: 30px;
+  margin: 5px 10px;
+  background: #111;
+  float: left;
+  -webkit-transition: margin-left 0.15s ease;
+  -webkit-transition-delay: 0;
+  -moz-transition: margin-left 0.15s ease 0;
+  -o-transition: margin-left 0.15s ease 0;
+  transition: margin-left 0.15s ease 0;
+}
+.tchat-container .tchat-participants ul li a:hover, .tchat-container .tchat-participants ul li a:focus {
+  color: #FFF;
+  background: rgba(255, 255, 255, 0.1);
+}
+.tchat-container .tchat-participants ul li a:hover .avatar, .tchat-container .tchat-participants ul li a:focus .avatar {
+  margin-left: -30px;
+  -webkit-transition: margin-left 0.15s ease;
+  -webkit-transition-delay: 0.5s;
+  -moz-transition: margin-left 0.15s ease 0.5s;
+  -o-transition: margin-left 0.15s ease 0.5s;
+  transition: margin-left 0.15s ease 0.5s;
+}
+.tchat-container .tchat-participants ul li a:hover .username, .tchat-container .tchat-participants ul li a:focus .username {
+  width: 90%;
+  -webkit-transition: width 0.15s ease;
+  -webkit-transition-delay: 0.5s;
+  -moz-transition: width 0.15s ease 0.5s;
+  -o-transition: width 0.15s ease 0.5s;
+  transition: width 0.15s ease 0.5s;
+}
+.tchat-container .tchat-participants ul li a:hover[class], .tchat-container .tchat-participants ul li a:focus[class] {
+  border-right-width: 7px;
+}
+.tchat-container .tchat-participants ul li a:hover[class] .avatar, .tchat-container .tchat-participants ul li a:focus[class] .avatar {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+.tchat-container .tchat-participants ul li a:hover[class] .username, .tchat-container .tchat-participants ul li a:focus[class] .username {
+  color: #FFF;
+}
+.tchat-container .tchat-participants ul li a.operator {
+  border-right: 3px solid #1073b2;
+}
+.tchat-container .tchat-participants ul li a.inactive {
+  border-right: 3px solid #999;
+}
+.tchat-container .tchat-participants ul li a.inactive .avatar {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+  opacity: 0.7;
+}
+.tchat-container .tchat-participants ul li a.inactive .username {
+  color: #888;
+}
+.tchat-container .tchat-participants ul li a.online {
+  border-right: 3px solid green;
+}
+.tchat-container .tchat-participants ul li a.offline .avatar {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+  opacity: 0.3;
+}
+.tchat-container .tchat-participants ul li a.offline .username {
+  color: #666;
+}
+.tchat-container .tchat-participants ul li:nth-child(2n+1) a {
+  background: rgba(255, 255, 255, 0.03);
+}
+.tchat-container .tchat-participants ul li:nth-child(2n+1) a:hover, .tchat-container .tchat-participants ul li:nth-child(2n+1) a:focus {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/**
+ * Custom scrollbar
+ */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {
+  display: block;
+  height: 0;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: #222;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  height: 50px;
+  background-color: #444;
+}
+
+::-webkit-scrollbar-thumb:vertical:hover {
+  background-color: #777;
+}
