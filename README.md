@@ -6,7 +6,7 @@ Un tchat qu'il est simple, pas très utile, mais c'est suffisant pour comprendre
 ## Démonstration
 
 Vous pouvez voir et utiliser une version de démonstration à cette adresse : [Page de démonstration](http://tchat.alex-d.fr)
-Les avatars sont ceux utilisé sur Gravatar, et donc récupérés grâce à l'email entré lors de la connexion.
+Les avatars sont ceux utilisés sur Gravatar, et donc récupérés grâce à l'email entré lors de la connexion.
 
 
 ## Pré-requis
